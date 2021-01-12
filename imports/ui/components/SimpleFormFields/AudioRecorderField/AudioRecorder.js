@@ -11,12 +11,16 @@ import {audioRecorderStyle} from "./AudioRecorderStyle";
 
 export default ({name,label,value,onChange,readOnly,error})=>{
 
-  const [values, setValues] = React.useState({ recordButton: true});
+  const [values, setValues] = React.useState({ recordButton: true, audioButton: false, deleteButton: false});
 
   let recorder = null;
 
   const deleteAudio = () => {
       onChange({},{name,value: '-'})
+      setValues({
+        ...values,
+        ['recordButton']: true, ['audioButton']: false , ['deleteButton']: false
+      });
   }
 
   const onSuccess = (stream) => {
@@ -42,9 +46,8 @@ export default ({name,label,value,onChange,readOnly,error})=>{
 
     setValues({
       ...values,
-      ['recordButton']: !values.recordButton,
+      ['recordButton']: false, ['audioButton']: false , ['deleteButton']: false
     });
-    deleteAudio()
 
     navigator.getUserMedia = (
         navigator.getUserMedia ||
@@ -62,14 +65,13 @@ export default ({name,label,value,onChange,readOnly,error})=>{
     const stop = document.querySelector('.stop');
     stop.onclick = function() {
       recorder.stop();
-      console.log("recorder stopped, data available");
     }
   };
 
   const handleStopRecordAudio = (event) => {
     setValues({
       ...values,
-      ['recordButton']: !values.recordButton});
+      ['recordButton']: true, ['audioButton']: true , ['deleteButton']: true });
   };
 
     if(!!readOnly) {
@@ -83,15 +85,22 @@ export default ({name,label,value,onChange,readOnly,error})=>{
 
     return (
       <div key={name} style={audioRecorderStyle.containerRecord}>
+      {!values.audioButton ?
         <Fab color="secondary" aria-label="record" className="record" disabled={!values.recordButton} style={audioRecorderStyle.buttonOptions}>
             <KeyboardVoiceIcon onClick={handleRecordAudio} value={values.recordButton} />
         </Fab>
-
+      : null}
+      {!values.audioButton ?
         <Fab color="secondary" aria-label="play" className="stop" disabled={values.recordButton} style={audioRecorderStyle.buttonOptions}>
             <StopIcon onClick={handleStopRecordAudio} value={values.recordButton} />
         </Fab>
-        <audio src={value} controlsList={"nodownload"} controls="controls" autobuffer="autobuffer" style={audioRecorderStyle.buttonOptions}/>
-      <DeleteIcon onClick={deleteAudio} style={{marginTop: 10}} />
+        : null}
+        {values.audioButton ?
+          <audio src={value} controlsList={"nodownload"} controls="controls" autobuffer="autobuffer" style={audioRecorderStyle.buttonOptions}/>
+        : null}
+        {values.deleteButton && values.audioButton ?
+          <DeleteIcon onClick={deleteAudio} style={{marginTop: 10}} />
+        : null}
       </div>
     )
 }
