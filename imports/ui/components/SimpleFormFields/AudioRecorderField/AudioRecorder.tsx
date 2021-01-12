@@ -6,6 +6,7 @@ import Fab from '@material-ui/core/Fab';
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
 import StopIcon from '@material-ui/icons/Stop';
 import DeleteIcon from '@material-ui/icons/Delete';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 import {audioRecorderStyle} from "./AudioRecorderStyle";
 
@@ -86,12 +87,12 @@ export default ({name,label,value,onChange,readOnly,error}:IBaseSimpleFormCompon
         <Fab color="secondary" aria-label="record" className="record" disabled={!values.recordButton} style={audioRecorderStyle.buttonOptions}>
             <KeyboardVoiceIcon onClick={handleRecordAudio} value={values.recordButton} />
         </Fab>
-
+        {values.recordButton?'':<FiberManualRecordIcon style={{ color: '#DC143C' }}/>}
         <Fab color="secondary" aria-label="play" className="stop" disabled={values.recordButton} style={audioRecorderStyle.buttonOptions}>
             <StopIcon onClick={handleStopRecordAudio} value={values.recordButton} />
         </Fab>
         <audio src={value} controlsList={"nodownload"} controls="controls" autobuffer="autobuffer" style={audioRecorderStyle.buttonOptions}/>
-      <DeleteIcon onClick={deleteAudio} style={{marginTop: 10}} />
+      <DeleteIcon onClick={deleteAudio} style={{marginTop: 10}}  cursor="pointer" />
       </div>
     )
 }
