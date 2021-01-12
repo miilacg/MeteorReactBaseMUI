@@ -99,7 +99,9 @@ export default ({name,label,value,onChange,readOnly,error}:IBaseSimpleFormCompon
           <audio src={value} controlsList={"nodownload"} controls="controls" autobuffer="autobuffer" style={audioRecorderStyle.buttonOptions}/>
         : null}
         {values.deleteButton && values.audioButton ?
-          <DeleteIcon onClick={deleteAudio} style={{marginTop: 10}} />
+          <Fab color="secondary" aria-label="delete" className="delete" style={audioRecorderStyle.buttonOptions}>
+            <DeleteIcon onClick={deleteAudio} />
+          </Fab>
         : null}
       </div>
     )
