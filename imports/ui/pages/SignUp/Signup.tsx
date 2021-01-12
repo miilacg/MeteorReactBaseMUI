@@ -66,12 +66,12 @@ export default class Signup extends React.Component {
                   onChange={this.handleChange}
                 />
                 <div style={signupStyle.containerButtonOptions}>
-                  <Button color={'primary'} variant={'outlined'} submit="true">{'Cadastrar'}</Button>
+                  <Button color={'primary'} variant={'outlined'} submit>{'Cadastrar'}</Button>
                 </div>
 
             </SimpleForm>
             <div style={signupStyle.containerRouterSignIn}>
-              Já tem uma conta? Faça login clicando <Link to="/signin" color={'secondary'}>aqui</Link>
+              Já tem uma conta? Faça login clicando <Link to="/signin" color={'primary'}>aqui</Link>
             </div>
             {error === '' ? '' : <Message error header="Erro ao fazer registro!" content={error} />}
       </Container>

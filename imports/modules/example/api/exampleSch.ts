@@ -55,12 +55,14 @@ export const exampleSch = {
         label: 'Telefone',
         defaultValue: '',
         optional: false,
+        mask : '(##) ####-####',
       },
-      celphone: {
+      cpf: {
         type: String,
-        label: 'Celular',
+        label: 'CPF',
         defaultValue: '',
         optional: false,
+        mask : '###.###.###-##',
       },
     }
   },
@@ -90,6 +92,18 @@ export const exampleSch = {
     defaultValue: '',
     optional: true,
   },
+  address: {
+    type: Object,
+    label: 'Localização',
+    defaultValue: '',
+    optional: true,
+  },
+  status: {
+    type: Object,
+    label: 'Status',
+    defaultValue: '',
+    optional: false,
+  }
 };
 
 export interface IExample {

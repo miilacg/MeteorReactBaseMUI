@@ -1,25 +1,20 @@
 import React from "react";
-import {hasValue} from "../../../../libs/hasValue";
 import DateFnsUtils from '@date-io/date-fns';
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
-
 import SimpleLabelView from "/imports/ui/components/SimpleLabelView/SimpleLabelView";
-import SimpleValueView from "/imports/ui/components/SimpleValueView/SimpleValueView";
+import {hasValue} from "/imports/libs/hasValue";
 
-import {simpleLabelStyle} from "/imports/ui/components/SimpleLabelView/SimpleLabelViewStyle";
-
-export default ({name,label,value,onChange,readOnly,error,...otherProps})=>{
+export default ({name,label,value,onChange,readOnly,error,...otherProps}:IBaseSimpleFormComponent)=>{
     if(!!readOnly) {
         return (<div key={name}>
-            <SimpleLabelView label={label}/>
-            <SimpleLabelView value={value}/>
+            <SimpleLabelView  value={hasValue(value)?value.toLocaleDateString():undefined} label={label}/>
         </div>)
     }
 
-    const handleChange = (date,other) => {
+    const handleChange = (date:Date) => {
         onChange({target:{value:date}});
     }
 
@@ -32,6 +27,7 @@ export default ({name,label,value,onChange,readOnly,error,...otherProps})=>{
                 margin="normal"
                 key={name}
                 id={name}
+                error={!!error}
                 label={label}
                 value={value}
                 helperText={!!error?'Data inválida':undefined}

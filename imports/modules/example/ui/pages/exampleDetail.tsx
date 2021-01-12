@@ -8,9 +8,12 @@ import Container from '@material-ui/core/Container';
 import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '../../../../ui/components/SimpleFormFields/TextField/TextField';
 import TextMaskField from '../../../../ui/components/SimpleFormFields/TextMaskField/TextMaskField';
+import ToggleSwitch from '../../../../ui/components/SimpleFormFields/ToggleField/ToggleField';
 import DatePickerField from '../../../../ui/components/SimpleFormFields/DatePickerField/DatePickerField';
 import SelectField from '../../../../ui/components/SimpleFormFields/SelectField/SelectField';
 import UploadFilesCollection from '../../../../ui/components/SimpleFormFields/UploadFiles/uploadFilesCollection';
+import GoogleApiWrapper from '/imports/ui/components/SimpleFormFields/MapsField/MapsField'
+import ChipInput from '../../../../ui/components/SimpleFormFields/ChipInput/ChipInput';
 
 import AudioRecorder from "/imports/ui/components/SimpleFormFields/AudioRecorderField/AudioRecorder";
 
@@ -43,12 +46,11 @@ const ExampleDetail = ({screenState, loading, exampleDoc, save, history}: IExamp
                 onSubmit={handleSubmit}
                 loading={loading}
             >
-
                 <SimpleImageUploadBase64
                     label={'Imagem'}
                     name={'image'}
                 />
-                <FormGroup key={'fields'}>
+                <FormGroup key={'fieldsOne'}>
                     <TextField
                         placeholder='Titulo'
                         name='title'
@@ -58,6 +60,9 @@ const ExampleDetail = ({screenState, loading, exampleDoc, save, history}: IExamp
                         name='description'
                     />
                 </FormGroup>
+                <GoogleApiWrapper
+                    name={'address'}
+                />
                 <FormGroup key={'fields'}>
                     <SelectField
                         placeholder='Tipo'
@@ -72,17 +77,19 @@ const ExampleDetail = ({screenState, loading, exampleDoc, save, history}: IExamp
                         name='date'
                     />
                 </FormGroup>
-                <FormGroup key={'fields'} formType={'subform'} name={'contacts'}>
-                    <TextField
+                <FormGroup key={'fieldsThree'} formType={'subform'} name={'contacts'}>
+                    <TextMaskField
                         placeholder='Telefone'
+                        schema={exampleApi.schema.contacts}
                         name='phone'
                     />
-                    <TextField
-                        placeholder='Celular'
-                        name='celphone'
+                    <TextMaskField
+                        placeholder='CPF'
+                        schema={exampleApi.schema.contacts}
+                        name='cpf'
                     />
                 </FormGroup>
-                <FormGroup key={'fields'} formType={'subformArray'} name={'tasks'}>
+                <FormGroup key={'fieldsFour'} formType={'subformArray'} name={'tasks'}>
                     <TextField
                         placeholder='Nome da Tarefa'
                         name='name'
@@ -92,6 +99,13 @@ const ExampleDetail = ({screenState, loading, exampleDoc, save, history}: IExamp
                         name='description'
                     />
                 </FormGroup>
+
+                <ToggleSwitch
+                    placeholder='Status da Tarefa'
+                    name='status'
+                    checksList = {['Todo', 'Doing', 'Done']}
+                />
+
                 <FormGroup key={'fields'}>
                     <AudioRecorder
                         placeholder='Áudio'
@@ -103,6 +117,12 @@ const ExampleDetail = ({screenState, loading, exampleDoc, save, history}: IExamp
                     name='files'
                     label={'Arquivos'}
                     doc={exampleDoc}/>
+                <FormGroup key={'fieldsFive'} name={'chips'}>
+                    <ChipInput
+                        name="chip"
+                        placeholder="Chip"
+                    />
+                </FormGroup>
                 <div key={'Buttons'}>
                     <Button
                         key={'b1'}

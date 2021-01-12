@@ -112,7 +112,7 @@ export default class Signin extends React.Component {
       Meteor.loginWithGoogle({requestPermissions: ['profile', 'email']}, (err) => {
         callbackLogin(err);
       });
-    };    
+    };
 
     return (
       <Container style={{width:'100%',maxWidth:400}}>
@@ -152,9 +152,8 @@ export default class Signin extends React.Component {
 
               </div>
             </SimpleForm>
-            <div style={{marginTop:15}}>
+            <div style={signinStyle.containerRouterSignUp}>
               <Button color={'secondary'} onClick={()=>this.props.history.push('/signup')}>{'É novo por aqui? Clique aqui para se cadastrar!'}</Button>
-
             </div>
             <div key="loginoptions" style={{
               paddingRight: 5,

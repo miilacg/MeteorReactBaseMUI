@@ -14,22 +14,12 @@
 
  */
 
-import { max } from "lodash";
-import {isMobile} from "/imports/libs/deviceVerify";
-
-const titleTextColor = '#222222';
-
-const simpleValueStyle = {
-  displayValue: {
-    color:titleTextColor,
-    padding:5,
-    height:35,
-    marginTop:4,
-    marginBottom:8,
-  },
+const datePickerStyle = {
+    labelTitle: {
+        marginBottom:'1rem'
+    }
 };
 
 export {
-    simpleValueStyle,
-    titleTextColor,
+    datePickerStyle,
 };
