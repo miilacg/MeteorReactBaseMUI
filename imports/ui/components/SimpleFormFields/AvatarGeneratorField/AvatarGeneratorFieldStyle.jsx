@@ -14,20 +14,18 @@
 
  */
 
- import {isMobile} from "/imports/libs/deviceVerify";
-
-const toggleSwitchSyle = {
-  checksList: {
-    color:'#BBB',
-    fontSize: '14px',
+const avatarGeneratorStyle = {
+  selectImage: {
+    cursor:'pointer',
+    fontSize: '12px',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: 400,
     lineHeight: 1,
     letterSpacing: '0.00938em',
-    paddingTop: 10,
+    color: 'rgba(108, 104, 104)',
   },
 };
 
 export {
-    toggleSwitchSyle,
+    avatarGeneratorStyle,
 };

@@ -523,7 +523,6 @@ O SimpleTable foi criado para ser simples e extensível:
 * extensível porque permite a implementação de componentes que poderão ser utilizados com a mesma simplicidade com que são utilizados os componentes do pacote *Material-UI*.
 
 O SimpleTable possui as seguintes propriedades:
-
            <SimpleTable
                 schema={_.pick(exampleApi.schema,['image','title','description'])}
                 data={examples}

@@ -5,14 +5,19 @@
     "start": "meteor run",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+<<<<<<< HEAD
     "visualize": "meteor --production --extra-packages bundle-visualizer",
     "storybook": "start-storybook -p 6006 -s dist",
     "build-storybook": "build-storybook -s dist"
+=======
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+>>>>>>> b7b9b9372685c87f6c629a94b58c21b3c17a5297
   },
   "dependencies": {
     "@artsy/fresnel": "^1.3.0",
     "@date-io/date-fns": "^1.3.13",
-    "@material-ui/core": "^4.11.2",
+    "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@material-ui/pickers": "^3.2.10",
@@ -22,10 +27,16 @@
     "google-maps-react": "^2.0.6",
     "idb-keyval": "^4.0.1",
     "jquery": "^3.5.1",
+    "konva": "^7.2.2",
     "lodash": "^4.17.20",
     "meteor-node-stubs": "^1.0.1",
     "prop-types": "^15.7.2",
     "react-addons-pure-render-mixin": "^15.6.3",
+<<<<<<< HEAD
+=======
+    "react-avatar-editor": "^11.1.0",
+    "react-dom": "^17.0.1",
+>>>>>>> b7b9b9372685c87f6c629a94b58c21b3c17a5297
     "react-dropzone": "^11.2.4",
     "react-file-input-previews-base64": "^1.0.8",
     "react-loadable": "^5.5.0",
@@ -46,10 +57,14 @@
     "testModule": "tests/main.ts"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@storybook/addon-actions": "^6.1.15",
     "@storybook/addon-controls": "^6.1.15",
     "@storybook/addon-essentials": "^6.1.15",
     "@storybook/addon-links": "^6.1.15",
+=======
+    "@babel/core": "^7.12.10",
+>>>>>>> b7b9b9372685c87f6c629a94b58c21b3c17a5297
     "@storybook/react": "^6.1.15",
     "@types/meteor": "^1.4.65",
     "@types/mocha": "^8.0.4",
