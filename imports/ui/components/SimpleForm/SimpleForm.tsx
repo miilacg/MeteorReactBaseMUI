@@ -1,31 +1,38 @@
 import React, { Component } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import Add from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import DragHandle from '@material-ui/icons/DragHandle';
-import Delete from '@material-ui/icons/Delete';
-import Alert from '@material-ui/lab/Alert';
-import _ from 'lodash';
-import shortid from 'shortid';
 import { ReactSortable } from 'react-sortablejs';
 
+import Add from '@material-ui/icons/Add';
+import Delete from '@material-ui/icons/Delete';
+import DragHandle from '@material-ui/icons/DragHandle';
 import Snackbar from '@material-ui/core/Snackbar';
-import SimpleLabelView from '/imports/ui/components/SimpleLabelView/SimpleLabelView';
+
+import Fab from '@material-ui/core/Fab';
+import { IconButton } from '@material-ui/core';
+
+import { Alert } from '@material-ui/lab';
+
+import _ from 'lodash';
+import shortid from 'shortid';
 
 import { hasValue, isBoolean } from '../../../libs/hasValue';
+
+import SimpleLabelView from '/imports/ui/components/SimpleLabelView/SimpleLabelView';
+
 import { simpleFormStyle } from './SimpleFormStyle';
 
-interface ISubFormArrayComponent {
-    reactElement: any;
-    childrensElements: any;
-    name: string;
-    mode: string;
-    fieldSchema: object;
-    initialValue?: any;
-    setDoc: ({})=>void;
-    setFieldMethods: ({})=>any;
 
+
+interface ISubFormArrayComponent {
+  reactElement: any;
+  childrensElements: any;
+  name: string;
+  mode: string;
+  fieldSchema: object;
+  initialValue?: any;
+  setDoc: ({})=>void;
+  setFieldMethods: ({})=>any;
 }
+
 
 const SubFormArrayComponent = ({ reactElement, childrensElements, name, initialValue, ...props }: ISubFormArrayComponent) => {
   const [error, setError] = React.useState(false);
@@ -176,85 +183,90 @@ const SubFormArrayComponent = ({ reactElement, childrensElements, name, initialV
 
   return (
     <div
-      key={name}
+      key={ name }
       style={{ backgroundColor: error ? '#FFF6F6' : undefined, ...simpleFormStyle.containerLabel }}
     >
-      <SimpleLabelView label={label} />
-      <div style={simpleFormStyle.containerForm}>
+      <SimpleLabelView label={ label } />
 
+      <div style={ simpleFormStyle.containerForm }>
         <ReactSortable
-          disabled={mode === 'view'}
-          list={value || []}
-          setList={onSortDocs}
-          handle={'.dragButton'}
+          disabled={ mode === 'view' }
+          list={ value || [] }
+          setList={ onSortDocs }
+          handle={ '.dragButton' }
         >
-          {(value || []).map((subForm, subFormIndex) => {
+          { (value || []).map((subForm, subFormIndex) => {
             if (subForm && subForm.id) {
               return (
-                <div key={subForm.id} style={simpleFormStyle.containerSubForm}>
+                <div key={ subForm.id } style={ simpleFormStyle.containerSubForm }>
                   <SimpleForm
                     isSubForm
-                    ref={refForm => formRefs[subForm.id] = refForm}
-                    key={subForm.id}
-                    mode={mode}
+                    ref={ refForm => formRefs[subForm.id] = refForm }
+                    key={ subForm.id}
+                    mode={ mode }
                     schema={
                       props.fieldSchema &&
                       props.fieldSchema.subSchema ? props.fieldSchema.subSchema : undefined
                     }
-                    doc={subForm}
-                    onFormChange={onFormChangeHandle(subForm.id)}
+                    doc={ subForm }
+                    onFormChange={ onFormChangeHandle(subForm.id) }
                   >
-                    {childrensElements}
+                    { childrensElements }
                   </SimpleForm>
-                  {mode !== 'view' ? (
-                    <div style={simpleFormStyle.buttonForm}>
-                      <IconButton onClick={onClickDelete(subForm.id)}><Delete /></IconButton>
-                    </div>
-                  ) : null}
-                  {mode !== 'view' ? (
-                    <div className={'dragButton'} style={simpleFormStyle.buttonForm}>
-                      <IconButton onClick={onClickDelete(subForm.id)}><DragHandle /></IconButton>
-                    </div>
-                  ) : null}
 
+                  { mode !== 'view' ? (
+                    <div style={ simpleFormStyle.buttonForm }>
+                      <IconButton onClick={ onClickDelete(subForm.id) }> <Delete /> </IconButton>
+                    </div>
+                  ) : null }
+
+                  { mode !== 'view' ? (
+                    <div className={ 'dragButton' } style={ simpleFormStyle.buttonForm }>
+                      <IconButton onClick={ onClickDelete(subForm.id) }> <DragHandle /> </IconButton>
+                    </div>
+                  ) : null }
                 </div>
               );
             }
-            return <div key={`el${subFormIndex}`} />;
+            return <div key={ `el${ subFormIndex }` } />;
           })}
-
         </ReactSortable>
-        <div style={simpleFormStyle.containerItens}>
-          {!value || value.length === 0 || Object.keys(value[0]).length === 0 ? (
-            <div style={simpleFormStyle.containerEmptyItens}>{'Não há itens'}</div>
-          ) : null}
+
+        <div style={ simpleFormStyle.containerItens }>
+          { !value || value.length === 0 || Object.keys(value[0]).length === 0 ? (
+            <div style={ simpleFormStyle.containerEmptyItens }> { 'Não há itens' } </div>
+          ) : null }
         </div>
-        {mode !== 'view' ? (<div style={simpleFormStyle.containerAddSubForm}>
-          <Fab
-            id={'addSubForm'}
-            color="secondary"
-            style={{ color: error ? '#9F3A38' : '#ffffff', ...simpleFormStyle.buttonAddSubForm }}
-            onClick={addSubForm}
-          >
-            <Add />
-          </Fab>
-        </div>) : null}
+
+        { mode !== 'view' ? (
+          <div style={ simpleFormStyle.containerAddSubForm }>
+            <Fab
+              id={ 'addSubForm' }
+              color="secondary"
+              style={{ color: error ? '#9F3A38' : '#ffffff', ...simpleFormStyle.buttonAddSubForm }}
+              onClick={ addSubForm }
+            >
+              <Add />
+            </Fab>
+          </div>
+        ) : null }
       </div>
     </div>
   );
 };
 
-interface ISubFormComponent {
-    reactElement: any;
-    childrensElements: any;
-    name: string;
-    mode: string;
-    fieldSchema: object;
-    initialValue?: any;
-    setDoc: ({})=>void;
-    setFieldMethods: ({})=>any;
 
+interface ISubFormComponent {
+  reactElement: any;
+  childrensElements: any;
+  name: string;
+  mode: string;
+  fieldSchema: object;
+  initialValue?: any;
+  setDoc: ({}) => void;
+  setFieldMethods: ({}) => any;
 }
+
 
 const SubFormComponent = ({ reactElement, childrensElements, name, ...props }: ISubFormComponent) => {
   const [error, setError] = React.useState(false);
@@ -273,13 +285,13 @@ const SubFormComponent = ({ reactElement, childrensElements, name, ...props }: I
       setValue(props.initialValue);
     }
 
-
     if (mode !== props.mode) {
       setMode(props.mode);
 
       if (props.mode === 'view') {
         setChangeByUser(false);
       }
+
       if (props.mode === 'view' && error) {
         setError(false);
       }
@@ -338,13 +350,13 @@ const SubFormComponent = ({ reactElement, childrensElements, name, ...props }: I
       if (reactElement.props.onChange) {
         reactElement.props.onChange(e, { ...field, value: field.checked });
       }
-    }
-    else {
+    } else {
       setValue(field.value);
       props.setDoc({ [name]: field.value });
       if (!changeByUser) {
         setChangeByUser(true);
       }
+
       if (reactElement.props.onChange) {
         reactElement.props.onChange(e, field);
       }
@@ -362,40 +374,43 @@ const SubFormComponent = ({ reactElement, childrensElements, name, ...props }: I
   };
 
   const label = reactElement.props.label || (props.fieldSchema ? props.fieldSchema.label : undefined);
+
+
   return (
-    <div key={name} style={simpleFormStyle.containerLabel}>
-      <SimpleLabelView label={label} />
-      <div style={simpleFormStyle.containerChildrenElements}>
+    <div key={ name } style={ simpleFormStyle.containerLabel }>
+      <SimpleLabelView label={ label } />
+
+      <div style={ simpleFormStyle.containerChildrenElements }>
         <SimpleForm
           isSubForm
-          ref={fRef => formRef = fRef}
-          mode={mode}
+          ref={ fRef => formRef = fRef }
+          mode={ mode }
           schema={
             props.fieldSchema &&
             props.fieldSchema.subSchema ? props.fieldSchema.subSchema : undefined
           }
-          doc={value}
-          onFormChange={onFormChangeHandle}
+          doc={ value }
+          onFormChange={ onFormChangeHandle }
         >
-          {childrensElements}
+          { childrensElements }
         </SimpleForm>
       </div>
-
     </div>
   );
 };
 
 
 interface IFieldComponent {
-    reactElement: any;
-    name: string;
-    mode: string;
-    fieldSchema: object;
-    initialValue?: any;
-    setDoc: ({})=>void;
-    setFieldMethods: ({})=>any;
-
+  reactElement: any;
+  name: string;
+  mode: string;
+  fieldSchema: object;
+  initialValue?: any;
+  setDoc: ({}) => void;
+  setFieldMethods: ({}) => any;
 }
+
+
 const FieldComponent = ({ reactElement, name, ...props }: IFieldComponent) => {
   const [error, setError] = React.useState(false);
   const [value, setValue] = React.useState(props.initialValue || '');
@@ -465,8 +480,7 @@ const FieldComponent = ({ reactElement, name, ...props }: IFieldComponent) => {
       if (reactElement.props.onChange) {
         reactElement.props.onChange(e, { ...field, value: field.checked });
       }
-    }
-    else {
+    } else {
       setValue(field.value);
       props.setDoc({ [name]: field.value });
       if (!changeByUser) {
@@ -482,7 +496,8 @@ const FieldComponent = ({ reactElement, name, ...props }: IFieldComponent) => {
     }
   };
 
-  return (React.cloneElement(reactElement, { value,
+  return (React.cloneElement(reactElement, { 
+    value,
     onChange,
     error: error && (!value || value.length === 0) ? true : undefined,
     label: reactElement.props.label || (props.fieldSchema ? props.fieldSchema.label : undefined),
@@ -493,153 +508,136 @@ const FieldComponent = ({ reactElement, name, ...props }: IFieldComponent) => {
   }));
 };
 
+
 interface ISimpleFormProps {
-    schema: [] | {};
-    onSubmit?: (submit: ()=>void)=> void;
-    isSubForm?: boolean;
-    mode?: string;
-    children?: object[];
-    doc?: object;
-    loading?: boolean;
-    styles?: object;
-    onFormChange: (onChange: ()=>void)=> void;
+  schema: [] | {};
+  onSubmit?: (submit: () => void) => void;
+  isSubForm?: boolean;
+  mode?: string;
+  children?: object[];
+  doc?: object;
+  loading?: boolean;
+  styles?: object;
+  onFormChange: (onChange: () => void) => void;
 }
 
 class SimpleForm extends Component<ISimpleFormProps> {
-    docValue = this.props.doc;
-    fields = {};
-    state = { error: null,
-      mode: this.props.mode || 'edit',
-      formElements: null,
-      open: true,
-    };
+  docValue = this.props.doc;
+  fields = {};
+  state = { error: null,
+    mode: this.props.mode || 'edit',
+    formElements: null,
+    open: true,
+  };
 
-    setDoc = (newDoc) => {
-      this.docValue = { ...this.docValue, ...newDoc };
-      if (this.props.onFormChange) {
-        this.props.onFormChange(this.docValue);
-      }
+  setDoc = (newDoc) => {
+    this.docValue = { ...this.docValue, ...newDoc };
+    if (this.props.onFormChange) {
+      this.props.onFormChange(this.docValue);
+    }
+  }
+
+  getDoc = () => this.docValue
+
+  initialValueDefault = (schema) => {
+    if (schema && schema.defaultValue) {
+      return schema.defaultValue;
+    }
+    if (schema && schema.type === Date) {
+      return new Date();
+    }
+    return '';
+  }
+
+  wrapElement = (element, index) => {
+    const self = this;
+
+    if (!element.type && (!self.props.schema || !element.props || !element.props.name || !self.props.schema[element.props.name])) {
+      return element;
     }
 
-    getDoc = () => this.docValue
-
-
-    initialValueDefault = (schema) => {
-      if (schema && schema.defaultValue) {
-        return schema.defaultValue;
-      }
-      if (schema && schema.type === Date) {
-        return new Date();
-      }
-      return '';
+    if (element.props.submit) {
+      return React.cloneElement(element, {
+        onClick: this.onSubmitForm,
+      });
+    } else if (
+      element.type &&
+      element.type.displayName &&
+      element.type.displayName.indexOf('Button') !== -1
+    ) {
+      return element;
     }
 
-    wrapElement = (element, index) => {
-      const self = this;
+    self.fields[element.props.name] = { type: element.type && element.type.name };
 
-
-
-
-      if (!element.type&&(!self.props.schema||!element.props||!element.props.name||!self.props.schema[element.props.name])) {
-        return element;
-      }
-
-      if (element.props.submit) {
-        return React.cloneElement(element, {
-          onClick: this.onSubmitForm,
-        });
-      }
-      else if (
-        element.type &&
-        element.type.displayName &&
-        element.type.displayName.indexOf('Button') !== -1
-      ) {
-        return element;
-      }
-
-
-
-      self.fields[element.props.name] = { type: element.type && element.type.name };
-      if (element.props.formType === 'subform' && !!element.props.name) {
-        return (<SubFormComponent
-          name={element.props.name}
-          childrensElements={element.props.children}
-          key={element.props.name ? element.props.name : (`el${index}`)}
-          fieldSchema={self.props.schema ? self.props.schema[element.props.name] : undefined}
-          initialValue={self.props.doc ? self.props.doc[element.props.name] : this.initialValueDefault(self.props.schema[element.props.name])}
-          reactElement={element}
-          setDoc={this.setDoc}
-          mode={self.props.mode}
-          setFieldMethods={methods => self.fields[element.props.name] = { ...self.fields[element.props.name], ...methods }}
-        />);
-      }
-      else if (element.props.formType === 'subformArray' && !!element.props.name) {
-        return (<SubFormArrayComponent
-          name={element.props.name}
-          childrensElements={element.props.children}
-          key={element.props.name ? element.props.name : (`el${index}`)}
-          fieldSchema={self.props.schema ? self.props.schema[element.props.name] : undefined}
-          initialValue={self.props.doc ? self.props.doc[element.props.name] : this.initialValueDefault(self.props.schema[element.props.name])}
-          reactElement={element}
-          setDoc={this.setDoc}
-          mode={self.props.mode}
-          setFieldMethods={methods => self.fields[element.props.name] = { ...self.fields[element.props.name], ...methods }}
-        />);
-      }
-      else if (
-        element.type.name === 'FormGroup' ||
-        element.type.name === 'Segment' ||
-        React.Children.toArray(element.props.children).length > 0
-      ) {
-        const subElements = React.Children.toArray(element.props.children).map((element, index) => self.wrapElement(element, index));
-        const newElement = React.cloneElement(element, { key: `el${index}`, children: subElements });
-        return newElement;
-      }
-
-      return (<FieldComponent
-        name={element.props.name}
-        key={element.props.name ? element.props.name : (`el${index}`)}
-        fieldSchema={self.props.schema ? self.props.schema[element.props.name] : undefined}
-        initialValue={hasValue(self.props.doc) ? self.props.doc[element.props.name] : this.initialValueDefault(self.props.schema[element.props.name])}
-        reactElement={element}
-        setDoc={this.setDoc}
-        mode={self.props.mode}
-        setFieldMethods={methods => self.fields[element.props.name] = { ...self.fields[element.props.name], ...methods }}
-      />);
+    if (element.props.formType === 'subform' && !!element.props.name) {
+      return (
+        <SubFormComponent
+          name={ element.props.name }
+          childrensElements={ element.props.children }
+          key={ element.props.name ? element.props.name : (`el${ index }`) }
+          fieldSchema={ self.props.schema ? self.props.schema[element.props.name] : undefined } 
+          initialValue={ self.props.doc ? self.props.doc[element.props.name] : this.initialValueDefault(self.props.schema[element.props.name]) }
+          reactElement={ element }
+          setDoc={ this.setDoc }
+          mode={ self.props.mode }
+          setFieldMethods={ methods => self.fields[element.props.name] = { ...self.fields[element.props.name], ...methods } }
+        />
+      );
+    } else if (element.props.formType === 'subformArray' && !!element.props.name) {
+      return (
+        <SubFormArrayComponent
+          name={ element.props.name }
+          childrensElements={ element.props.children }
+          key={ element.props.name ? element.props.name : (`el${ index }`) }
+          fieldSchema={ self.props.schema ? self.props.schema[element.props.name] : undefined }
+          initialValue={ self.props.doc ? self.props.doc[element.props.name] : this.initialValueDefault(self.props.schema[element.props.name]) }
+          reactElement={ element }
+          setDoc={ this.setDoc }
+          mode={ self.props.mode }
+          setFieldMethods={ methods => self.fields[element.props.name] = { ...self.fields[element.props.name], ...methods } }
+        />
+      );
+    } else if (
+      element.type.name === 'FormGroup' ||
+      element.type.name === 'Segment' ||
+      React.Children.toArray(element.props.children).length > 0
+    ) {
+      const subElements = React.Children.toArray(element.props.children).map((element, index) => self.wrapElement(element, index));
+      const newElement = React.cloneElement(element, { key: `el${ index }`, children: subElements });
+      return newElement;
     }
 
-    initFormElements = (update = false) => {
-      const self = this;
+    return (
+      <FieldComponent
+        name={ element.props.name }
+        key={ element.props.name ? element.props.name : (`el${ index }`) }
+        fieldSchema={ self.props.schema ? self.props.schema[element.props.name] : undefined }
+        initialValue={ hasValue(self.props.doc) ? self.props.doc[element.props.name] : this.initialValueDefault(self.props.schema[element.props.name]) }
+        reactElement={ element }
+        setDoc={ this.setDoc }
+        mode={ self.props.mode }
+        setFieldMethods={ methods => self.fields[element.props.name] = { ...self.fields[element.props.name], ...methods } }
+      />
+    );
+  }
 
-      const elements = React.Children.toArray(this.props.children);
-      const ListaOfElements = elements.map((element, index) => this.wrapElement(element, index));
+  initFormElements = (update = false) => {
+    const self = this;
 
-      return ListaOfElements;
-    }
+    const elements = React.Children.toArray(this.props.children);
+    const ListaOfElements = elements.map((element, index) => this.wrapElement(element, index));
 
-    validate = () => {
-      const fielsWithError: any = [];
+    return ListaOfElements;
+  }
 
-      if (this.props.schema) {
-        Object.keys(this.fields).forEach((field) => {
-          if (this.props.schema[field] && this.props.schema[field].subSchema) {
-            if (
-              this.props.schema[field] &&
-              !this.props.schema[field].optional &&
-              !this.fields[field].validateRequired() &&
-              fielsWithError.indexOf(this.props.schema[field].label) === -1
-            ) {
-              fielsWithError.push(this.props.schema[field].label);
-            }
-            if (
-              this.fields[field].validateRequiredSubForm &&
-              !this.fields[field].validateRequiredSubForm() &&
-              fielsWithError.indexOf(this.props.schema[field].label) === -1
-            ) {
-              fielsWithError.push(this.props.schema[field].label);
-            }
-          }
-          else if (
+  validate = () => {
+    const fielsWithError: any = [];
+
+    if (this.props.schema) {
+      Object.keys(this.fields).forEach((field) => {
+        if (this.props.schema[field] && this.props.schema[field].subSchema) {
+          if (
             this.props.schema[field] &&
             !this.props.schema[field].optional &&
             !this.fields[field].validateRequired() &&
@@ -647,92 +645,108 @@ class SimpleForm extends Component<ISimpleFormProps> {
           ) {
             fielsWithError.push(this.props.schema[field].label);
           }
-
-          // Validate Schema
           if (
-            this.props.schema[field] &&
-            this.props.schema[field].validate &&
-            !this.props.schema[field].validate(this.docValue[field], this.docValue)
+            this.fields[field].validateRequiredSubForm &&
+            !this.fields[field].validateRequiredSubForm() &&
+            fielsWithError.indexOf(this.props.schema[field].label) === -1
           ) {
             fielsWithError.push(this.props.schema[field].label);
           }
+        }
+        else if (
+          this.props.schema[field] &&
+          !this.props.schema[field].optional &&
+          !this.fields[field].validateRequired() &&
+          fielsWithError.indexOf(this.props.schema[field].label) === -1
+        ) {
+          fielsWithError.push(this.props.schema[field].label);
+        }
 
-          // Validate Date Format
-          if (
-            this.props.schema[field] &&
-            this.props.schema[field].type === Date &&
-            !(this.getDoc()[field] instanceof Date && !isNaN(this.getDoc()[field].valueOf()))
-          ) {
-            fielsWithError.push(this.props.schema[field].label);
-            this.fields[field] && this.fields[field].setError && this.fields[field].setError(true);
-          }
-        });
-      }
+        // Validate Schema
+        if (
+          this.props.schema[field] &&
+          this.props.schema[field].validate &&
+          !this.props.schema[field].validate(this.docValue[field], this.docValue)
+        ) {
+          fielsWithError.push(this.props.schema[field].label);
+        }
 
-      if (fielsWithError.length > 0) {
-        this.setState({ error: fielsWithError });
-      }
-      else if (this.state.error) {
-        this.setState({ error: null });
-      }
-
-      return fielsWithError.length === 0;
+        // Validate Date Format
+        if (
+          this.props.schema[field] &&
+          this.props.schema[field].type === Date &&
+          !(this.getDoc()[field] instanceof Date && !isNaN(this.getDoc()[field].valueOf()))
+        ) {
+          fielsWithError.push(this.props.schema[field].label);
+          this.fields[field] && this.fields[field].setError && this.fields[field].setError(true);
+        }
+      });
     }
 
-    onSubmitForm = (event, ...others) => {
-      if (this.props.onSubmit && this.validate()) {
-        this.props.onSubmit(this.docValue);
-      }
-      else {
-        this.setState({ open: true })
-        console.log('Erro no formulário');
-      }
+    if (fielsWithError.length > 0) {
+      this.setState({ error: fielsWithError });
+    } else if (this.state.error) {
+      this.setState({ error: null });
     }
 
-    componentDidMount() {
-      this.docValue = { ...this.docValue, ...(this.props.doc || {}) };
+    return fielsWithError.length === 0;
+  }
+
+  onSubmitForm = (event, ...others) => {
+    if (this.props.onSubmit && this.validate()) {
+      this.props.onSubmit(this.docValue);
     }
+    else {
+      this.setState({ open: true })
+      console.log('Erro no formulário');
+    }
+  }
+
+  componentDidMount() {
+    this.docValue = { ...this.docValue, ...(this.props.doc || {}) };
+  }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-      if ((!_.isEqual(this.props.doc, prevProps.doc)) || (this.props.mode !== prevProps.mode)) {
-        const update = true;
-        this.docValue = { ...this.docValue, ...(this.props.doc || {}) };
-        this.setState({ formElements: this.initFormElements(update) });
-        this.setState({ mode: this.props.mode });
-      }
-
-      if ((this.props.mode !== prevProps.mode) && !!this.state.error) {
-        this.setState({ error: null });
-      }
+    if ((!_.isEqual(this.props.doc, prevProps.doc)) || (this.props.mode !== prevProps.mode)) {
+      const update = true;
+      this.docValue = { ...this.docValue, ...(this.props.doc || {}) };
+      this.setState({ formElements: this.initFormElements(update) });
+      this.setState({ mode: this.props.mode });
     }
+
+    if ((this.props.mode !== prevProps.mode) && !!this.state.error) {
+      this.setState({ error: null });
+    }
+  }
 
     render() {
       this.formElements = this.initFormElements();
 
       return (
-        <div style={this.props.style || { width: '100%' }}>
-          {this.state.error ? (
+        <div style={ this.props.style || { width: '100%' } }>
+          { this.state.error ? (
             <Snackbar
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                }}
-                open={this.state.open}
-                autoHideDuration={16000}
-                onClose={() => this.setState({ open: false })}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              open={ this.state.open }
+              autoHideDuration={ 16000 }
+              onClose={ () => this.setState({ open: false }) }
             >
-                <Alert icon={false} id={'message-id'} arialabel={'message-id'} onClose={() => this.setState({ open: false })} color={'warning'} severity={'warning'} elevation={6} variant="filled">
-                  <div style={{display: 'flex', flexDirection: 'column',justifyContent:'center',maxHeight:'auto',height:'auto'}}>
-                    <div>
-                      {`Os seguintes campos são obrigatórios e precisam ser preenchidos: ${(this.state.error.join(', ').replaceAll("*", "")) + '.'}`}
-                    </div>
+              <Alert icon={ false } id={ 'message-id' } arialabel={ 'message-id' } onClose={ () => this.setState({ open: false })} color={ 'warning' } severity={ 'warning' } elevation={ 6 } variant="filled">
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent:'center', maxHeight:'auto', height:'auto'} }>
+                  <div>
+                    { `Os seguintes campos são obrigatórios e precisam ser preenchidos: ${ (this.state.error.join(', ').replaceAll("*", "")) + '.' }` }
                   </div>
-                </Alert>
+                </div>
+              </Alert>
             </Snackbar>
-          ) : null}
-          {this.formElements}
+          ) : null }
+          { this.formElements }
         </div>
       );
     }
 }
+
 export default SimpleForm;

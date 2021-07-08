@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Chip from "@material-ui/core/Chip";
-import {hasValue} from "/imports/libs/hasValue";
+import { hasValue } from "/imports/libs/hasValue";
 import SimpleLabelView from "/imports/ui/components/SimpleLabelView/SimpleLabelView";
 import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
+import { IconButton } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import {styles} from './ChipInputStyle'
 import _ from 'lodash'

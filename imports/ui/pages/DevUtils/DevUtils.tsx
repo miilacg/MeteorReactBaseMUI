@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import SimpleForm from "/imports/ui/components/SimpleForm/SimpleForm";
 import TextField from "/imports/ui/components/SimpleFormFields/TextField/TextField";
-import Button from "@material-ui/core/Button";
+import { Button } from "@material-ui/core";
 import SelectField from "/imports/ui/components/SimpleFormFields/SelectField/SelectField";
 import CheckBoxField from "/imports/ui/components/SimpleFormFields/CheckBoxField/CheckBoxField";
 

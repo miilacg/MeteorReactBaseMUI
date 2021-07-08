@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import Button from '@material-ui/core/Button';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
 import AvatarEditor from 'react-avatar-editor';
 import CameraIcon from '@material-ui/icons/Camera';
 
 import SimpleLabelView from "/imports/ui/components/SimpleLabelView/SimpleLabelView";
 
-import {isMobile} from "/imports/libs/deviceVerify";
-import {hasValue} from "/imports/libs/hasValue";
+import { isMobile } from "/imports/libs/deviceVerify";
+import { hasValue } from "/imports/libs/hasValue";
 
-import {compactImageStyle} from "./ImageCompactFieldStyle";
+import { compactImageStyle } from "./ImageCompactFieldStyle";
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import * as appStyle from "/imports/materialui/styles";

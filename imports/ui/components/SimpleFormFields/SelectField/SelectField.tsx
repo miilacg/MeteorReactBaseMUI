@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {Button, InputLabel, ListItemText} from '@material-ui/core';
+import { Button, InputLabel, ListItemText } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
-import MenuItem from '@material-ui/core/MenuItem';
+import { MenuItem } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';

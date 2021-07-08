@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { Meteor } from 'meteor/meteor'
 import Container from '@material-ui/core/Container';
 import TextField from '../../../ui/components/SimpleFormFields/TextField/TextField';;
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 import SimpleForm from "/imports/ui/components/SimpleForm/SimpleForm";
 
 import {signinStyle} from "./SigninStyle";

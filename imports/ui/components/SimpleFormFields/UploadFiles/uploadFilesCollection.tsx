@@ -20,8 +20,8 @@ import { Meteor } from 'meteor/meteor';
 
 import Snackbar from '@material-ui/core/Snackbar';
 
-import Alert from '@material-ui/lab/Alert';
-import IconButton from '@material-ui/core/IconButton';
+import { Alert } from '@material-ui/lab';
+import { IconButton } from '@material-ui/core';
 
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Delete from '@material-ui/icons/Delete';

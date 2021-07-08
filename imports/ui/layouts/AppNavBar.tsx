@@ -1,12 +1,12 @@
 import React from 'react'
-import { withRouter, NavLink } from 'react-router-dom'
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import { withRouter, NavLink } from 'react-router-dom';
+import { Menu } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Modules from '../../modules';
-import {isMobile} from "/imports/libs/deviceVerify";
+import { isMobile } from "/imports/libs/deviceVerify";
 import Tabs from '@material-ui/core/Tabs';
 import {appNavBarStyle} from "./AppNavBarStyle";
 import AppBar from "@material-ui/core/AppBar";

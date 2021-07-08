@@ -2,7 +2,7 @@ import React from 'react';
 import {withTracker} from "meteor/react-meteor-data";
 import {userprofileApi} from "../../../api/UserProfileApi";
 import SimpleForm from "../../../../ui/components/SimpleForm/SimpleForm";
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import FormGroup from '@material-ui/core/FormGroup';
