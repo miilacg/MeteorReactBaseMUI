@@ -3,15 +3,20 @@
 
 // login page overrides the form’s submit event and call Meteor’s loginWithPassword()
 // Authentication errors modify the component’s state to be displayed
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Container from '@material-ui/core/Container';
-import TextField from '../../../ui/components/SimpleFormFields/TextField/TextField';
-import Button from '@material-ui/core/Button';
-import {userprofileApi} from "../../../userprofile/api/UserProfileApi";
-import SimpleForm from "/imports/ui/components/SimpleForm/SimpleForm";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import {signupStyle} from "./SignupStyle";
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+
+import { userprofileApi } from "../../../userprofile/api/UserProfileApi";
+
+import SimpleForm from "/imports/ui/components/SimpleForm/SimpleForm";
+import TextField from '../../../ui/components/SimpleFormFields/TextField/TextField';
+
+import { signupStyle } from "./SignupStyle";
+
+
 
 export default class Signup extends React.Component {
   constructor(props) {
@@ -30,13 +35,13 @@ export default class Signup extends React.Component {
   handleSubmit() {
     const { email, password } = this.state
 
-    userprofileApi.insertNewUser({ email, username: email, password },(err,r) => {
+    userprofileApi.insertNewUser({ email, username: email, password }, (err, r) => {
       if (err) {
-          this.props.showSnackBar({
-            type:'error',
-            title:'Problema na criação do usuário!',
-            description: 'Erro ao fazer registro em nossa base de dados!',
-          });
+        this.props.showSnackBar({
+          type:'error',
+          title:'Problema na criação do usuário!',
+          description: 'Erro ao fazer registro em nossa base de dados!',
+        });
       } else {
         this.props.showSnackBar({
           type:'sucess',
@@ -45,44 +50,46 @@ export default class Signup extends React.Component {
         });
       }
     })
-
   }
 
   render() {
-    const { error } = this.state
-    return (
-        <Container style={signupStyle.containerSignUp}>
-          <h2 style={signupStyle.labelRegisterSystem}>
-              <img src="/images/wireframe/logo.png" style={signupStyle.imageLogo} />
-              {'Cadastrar no sistema'}
-          </h2>
-            <SimpleForm onSubmit={this.handleSubmit}>
-                <TextField
-                  id="Email"
-                  label="Email"
-                  fullWidth
-                  name="email"
-                  type="email"
-                  placeholder="Digite um email"
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  id="Senha"
-                  label="Senha"
-                  fullWidth
-                  name="password"
-                  placeholder="Digite uma senha"
-                  type="password"
-                  onChange={this.handleChange}
-                />
-                <div style={signupStyle.containerButtonOptions}>
-                  <Button color={'primary'} variant={'outlined'} submit>{'Cadastrar'}</Button>
-                </div>
+    const { error } = this.state;
 
-            </SimpleForm>
-            <div style={signupStyle.containerRouterSignIn}>
-              Já tem uma conta? Faça login clicando <Link to="/signin" color={'secondary'}>aqui</Link>
-            </div>
+
+    return (
+      <Container style={ signupStyle.containerSignUp }>
+        <h2 style={ signupStyle.labelRegisterSystem }>
+          <img src="/images/wireframe/logo.png" style={ signupStyle.imageLogo } />
+          { 'Cadastrar no sistema' }
+        </h2>
+
+        <SimpleForm onSubmit={ this.handleSubmit }>
+          <TextField
+            id="Email"
+            label="Email"
+            fullWidth
+            name="email"
+            type="email"
+            placeholder="Digite um email"
+            onChange={ this.handleChange }
+          />
+          <TextField
+            id="Senha"
+            label="Senha"
+            fullWidth
+            name="password"
+            placeholder="Digite uma senha"
+            type="password"
+            onChange={ this.handleChange }
+          />
+          <div style={ signupStyle.containerButtonOptions }>
+            <Button color={ 'primary' } variant={ 'outlined' } submit> { 'Cadastrar' } </Button>
+          </div>
+        </SimpleForm>
+
+        <div style={ signupStyle.containerRouterSignIn }>
+          Já tem uma conta? Faça login clicando <Link to="/signin" color={ 'secondary' }>aqui</Link>
+        </div>
       </Container>
     )
   }

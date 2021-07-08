@@ -14,6 +14,7 @@
 
  */
 
+
 const appLayoutMenuStyle = {
   containerFixedMenuRouter: {
     display:'flex',
@@ -26,6 +27,7 @@ const appLayoutMenuStyle = {
     overflow:"hidden",
     margin:0,
   },
+
   containerHomeIconButton:{
     width:60,
     height:40,
@@ -34,6 +36,7 @@ const appLayoutMenuStyle = {
     justifyContent:'center',
     alignItems:'center',
   },
+
   routerSwitch : {
     width:'100%',
     height:'calc(100% - 55px)',
@@ -43,15 +46,20 @@ const appLayoutMenuStyle = {
   homeIconButton:{
     maxHeight:45,
   },
+
   containerFixedMenu:{
     display:'flex',
     flexDirection:'row',
     width:'100%',
     alignItems:'center',
   },
+
   toolbarFixedMenu:{
     width:'100%',
+    display: 'flex',
+    justifyContent: 'flex-end'
   },
+  
   containerAppRouter:{
     display:'flex',
     flexDirection:'column',
@@ -66,5 +74,5 @@ const appLayoutMenuStyle = {
 };
 
 export {
-    appLayoutMenuStyle,
+  appLayoutMenuStyle,
 };
