@@ -2,7 +2,7 @@
 // Authentication errors modify the component’s state to be displayed
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 
 import { Button } from '@material-ui/core';
@@ -123,11 +123,10 @@ export default class Signin extends React.Component {
     };
 
     return (
-      <Container style={{ width:'100%',maxWidth:400 }}>
+      <Container style={ signinStyle.containerSignIn }>
         <div style={{ display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center' }}>
           <div>
             <h2 style={ signinStyle.labelAccessSystem }>
-              <img src="/images/wireframe/logo.png" style={ signinStyle.imageLogo } />
               <div>{ 'Acessar o sistema' }</div>
             </h2>
 

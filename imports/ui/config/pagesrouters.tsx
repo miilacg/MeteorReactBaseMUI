@@ -1,14 +1,15 @@
 // @ts-ignore
 import React from "react";
-import Home from "../pages/Home/Home";
-import Signin from "../pages/SignIn/Signin";
-import Signup from "../pages/SignUp/Signup";
-import Signout from "../pages/SignOut/Signout";
-import EnrollAccount from "../pages/EnrollAccount/EnrollAccount";
+
+import asyncComponent from '/imports/libs/asyncComponent';
 import EmailVerify from "../pages/EmailVerify/EmailVerify";
+import EnrollAccount from "../pages/EnrollAccount/EnrollAccount";
 import RecoveryPassword from "/imports/ui/pages/RecoveryPassword/RecoveryPassword";
 import ResetPassword from "/imports/ui/pages/ResetPassword/ResetPassword";
-import asyncComponent from '/imports/libs/asyncComponent';
+import Signin from "../pages/SignIn/Signin";
+import Signout from "../pages/SignOut/Signout";
+import Signup from "../pages/SignUp/Signup";
+
 
 
 const DevUtils = asyncComponent(() => {
@@ -20,7 +21,7 @@ export const pagesRouterList = [
   {
     path: '/',
     exact:true,
-    component: Home,
+    component: Signin,
     isProtected:false,
   },
   {
