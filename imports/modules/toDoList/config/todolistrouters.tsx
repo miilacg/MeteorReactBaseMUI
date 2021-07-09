@@ -8,7 +8,7 @@ export const toDoListRouterList = [
     isProtected:true,
   },
   {
-    path: '/toDoList/create',
+    path: '/toDoList/:screenState',
     component: toDoList,
     isProtected:true,
   },

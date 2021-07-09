@@ -24,20 +24,20 @@ import * as appStyle from "/imports/materialui/styles";
 
 
 interface IToDoList {
-  toDoLists:object[];
-  history:object;
-  remove:(doc:object)=>void;
-  showDialog:(dialog:object)=>void;
-  onSearch:(text?:string)=>void;
-  total:number;
-  loading:boolean;
-  setPage:(page:number)=>void;
-  setPageSize:(pageSize:number)=>void;
-  searchBy?:any;
-  pageProperties:object;
+  toDoLists: object[];
+  history: object;
+  remove: (doc: object) => void;
+  showDialog: (dialog:object) => void;
+  onSearch: (text?: string) => void;
+  total: number;
+  loading: boolean;
+  setPage: (page: number) => void;
+  setPageSize: (pageSize: number) => void;
+  searchBy?: any;
+  pageProperties: object;
 }
 
-const ToDoList = ({ toDoLists, history, remove, showDialog, onSearch, total, loading, setPage, setPageSize, searchBy, pageProperties }:IToDoList) => {
+const ToDoList = ({ toDoLists, history, remove, showDialog, total, loading, setPage, setPageSize, searchBy, pageProperties }:IToDoList) => {
   const [open, setOpen] = useState(false);
 
   const handleModal = () => {
@@ -72,33 +72,6 @@ const ToDoList = ({ toDoLists, history, remove, showDialog, onSearch, total, loa
     showDialog(dialogOptions)
   }
 
-  const [text,setText] = React.useState(searchBy || '')
-  const change = (e) => {
-    if(text.length !== 0 && e.target.value.length === 0) {
-      onSearch();
-    }
-    setText(e.target.value);
-  }
-
-  const keyPress = (e, a) => {
-    if (e.key === 'Enter') {
-      if (text && text.trim().length > 0) {
-        onSearch(text.trim());
-      } else {
-        onSearch();
-      }
-    }
-  };
-
-  const click = (...e) => {
-    if (text && text.trim().length > 0) {
-      onSearch(text.trim());
-    } else {
-      onSearch();
-    }
-  }
-
-  
 
 
   return (
@@ -106,7 +79,7 @@ const ToDoList = ({ toDoLists, history, remove, showDialog, onSearch, total, loa
       <Typography style={ appStyle.title }> { 'lista de tarefas' } </Typography>
 
       <SimpleTable
-        schema={ _.pick(toDoListApi.schema,['image', 'title', 'description', 'date', 'statusToggle', 'chip', 'type']) }
+        schema={ _.pick(toDoListApi.schema,['title', 'description', 'date', 'chip', 'type']) }
         data={ toDoLists }
         onClick={ onClick }
         actions={[{ icon:<Delete color={'primary'} />, onClick:callRemove }]}

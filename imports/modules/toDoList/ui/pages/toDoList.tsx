@@ -1,7 +1,7 @@
 import React from 'react';
 import Meteor from 'meteor/meteor';
 import { ToDoListContainer } from './toDoListContainer';
-import { ToDoListDetailContainer } from './exampleDetail';
+import { ToDoListDetailContainer } from './toDoListDetail';
 
 
 export default (props:any) => {
@@ -20,7 +20,7 @@ export default (props:any) => {
 	const isPrintView = screenState && screenState.indexOf('print') === 0;
 	const isFullView = screenState && screenState.indexOf('full') === 0;
 
-	const newScreenState = screenState?(
+	const newScreenState = screenState ? (
 		isPrintView ? screenState.split('print')[1] : (
 			isFullView ? screenState.split('full')[1] : screenState
 		)
@@ -28,13 +28,13 @@ export default (props:any) => {
 
 	if (!!newScreenState && validState.indexOf(newScreenState) !== -1) {
 		if ((newScreenState === 'view') && !!id) {
-			return <ToDoListDetailContainer {...props} screenState={newScreenState} isPrintView={isPrintView} isFullView={isFullView} id={id}/>;
+			return <ToDoListDetailContainer { ...props } screenState={ newScreenState } isFullView={ isFullView } id={ id }/>;
 		} else if (newScreenState === 'edit' && !!id) {
-			return <ToDoListDetailContainer {...props} screenState={newScreenState} isPrintView={isPrintView} isFullView={isFullView} id={id} edit/>;
+			return <ToDoListDetailContainer { ...props } screenState={ newScreenState } isFullView={ isFullView } id={ id } edit/>;
 		} else if (newScreenState === 'create') {
-			return <ToDoListDetailContainer DetailContainer {...props} screenState={newScreenState} isPrintView={isPrintView} isFullView={isFullView} create/>;
+			return <ToDoListDetailContainer DetailContainer { ...props } screenState={ newScreenState } isFullView={ isFullView } create/>;
 		}
 	} else {
-		return <ToDoListContainer {...props} isPrintView={isPrintView} isFullView={isFullView} />;
+		return <ToDoListContainer { ...props } isFullView={ isFullView } />;
 	}
 };
