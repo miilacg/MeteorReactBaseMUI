@@ -1,7 +1,8 @@
 import React from 'react';
 import userprofile from '../userprofile/config';
-import example from './example/config';
 import pages from '../ui/config/index';
+
+import example from './toDoList/config';
 
 
 class Modules {
@@ -10,15 +11,14 @@ class Modules {
     this.modulesRouterList = [
       ...pages.pagesRouterList,
       ...userprofile.userprofileRouterList,
-      ...example.exampleRouterList,
+      ...example.toDoListRouterList,
     ];
 
     // Create modules App Menu Item list
     this.modulesAppMenuItemList = [
       ...pages.pagesMenuItemList,
       ...userprofile.userprofileMenuItemList,
-      ...example.exampleMenuItemList,
-
+      ...example.toDoListMenuItemList,
     ];
   }
 
@@ -42,4 +42,3 @@ class Modules {
 }
 
 export default new Modules();
-

@@ -28,23 +28,13 @@ const pageBackgroundColor = '#eeeeee';
 const titleTextColor = '#000000';
 const titleSecondaryTextColor = '#858585';
 const title = {
+  margin: '1rem auto 2rem',
+  textAlign: 'center',
+  fontSize: isMobile ? '1rem' : '2.8rem',
   color: titleTextColor,
-  fontSize: isMobile ? '16px' : '30px',
-  paddingTop: isMobile ? '20px' : '20px',
-  paddingBottom: isMobile ? '30px' : '40px',
-  fontWeight: isMobile ? '800' : '800',
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  width: 632.3,
-  height: 54.5,
-  margin: '0px 96.3px 44.2px 0px',
-  fontStretch: 'normal',
-  fontStyle: 'normal',
-  lineHeight: 1.67,
-  letterSpacing: 0.9,
-  textAlign: 'left',
-  textTransform: 'none',
+  fontWeight: '700',
+  textDecoration: 'underline',
+  textTransform: 'lowercase',
 };
 
 const subtitle = {
@@ -131,6 +121,30 @@ const fieldContainer = {
   padding: 4,
   paddingBottom:0,
 }
+
+// Modal
+const modal = {
+  position: 'absolute',
+  width: 'auto',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  backgroundColor: 'white',
+  border: 'none',
+  borderRadius: '1rem',
+  boxShadow: '0 3px 5px -1px rgba(0, 0, 0, 0.20), 0 5px 8px 0px rgba(0, 0, 0, 0.14), 0 1px 14px 0px rgba(0, 0, 0, 0.12)',
+  padding: '1.5rem 1.5rem .5rem',
+};
+
+const titleModal = {
+  width: 'auto',
+  margin: '0 2rem 2.5rem',
+  textAlign: 'center',
+  fontSize: '2.3rem',
+  fontWeight: 500,
+  lineHeight: '1.2'
+};
+
 // Messages
 const warningColor = '#ff9800';
 const dangerColor = '#f55a4e';
@@ -147,7 +161,7 @@ const transition = {
 // Boxes
 const boxShadow = {
   boxShadow:
-        '0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',
+    '0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',
 };
 
 // Button
@@ -169,6 +183,10 @@ export {
   subtituloInfoComplementar,
   fabContainer,
   containerHome,
+
+  // modal
+  modal,
+  titleModal,
 
   // messages
   warningColor,

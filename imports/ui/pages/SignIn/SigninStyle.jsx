@@ -32,11 +32,13 @@ const signinStyle = {
   },
 
   labelAccessSystem: {
-    textAlign: "center",
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    
+    marginBottom: '2.5rem',
+    textAlign: "center",    
   },
 
   imageLogo: {
