@@ -28,19 +28,19 @@ export default class Signup extends React.Component {
 
   // Using a ref is accessing the DOM directly and not preferred
   // The React way to get the value from an input is using onChange
-  handleChange(e, { name, value }) {
-    this.setState({ [name]: value })
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit() {
-    const { email, password } = this.state
+    const { email, password } = this.state;
 
-    userprofileApi.insertNewUser({ email, username: email, password }, (err, r) => {
+    userprofileApi.insertNewUser({ username: email, email, password }, (err, r) => {
       if (err) {
         this.props.showSnackBar({
           type:'error',
           title:'Problema na criação do usuário!',
-          description: 'Erro ao fazer registro em nossa base de dados!',
+          description: err.reason,
         });
       } else {
         this.props.showSnackBar({
@@ -59,20 +59,23 @@ export default class Signup extends React.Component {
     return (
       <Container style={ signupStyle.containerSignUp }>
         <h2 style={ signupStyle.labelRegisterSystem }>
-          <img src="/images/wireframe/logo.png" style={ signupStyle.imageLogo } />
           { 'Cadastrar no sistema' }
         </h2>
 
-        <SimpleForm onSubmit={ this.handleSubmit }>
+        <SimpleForm 
+          onSubmit={ this.handleSubmit }
+          schema={ userprofileApi.schema }
+        >
           <TextField
-            id="Email"
+            id="Email" 
             label="Email"
             fullWidth
             name="email"
             type="email"
             placeholder="Digite um email"
-            onChange={ this.handleChange }
+            onChange={ this.handleChange }            
           />
+          
           <TextField
             id="Senha"
             label="Senha"
@@ -82,6 +85,7 @@ export default class Signup extends React.Component {
             type="password"
             onChange={ this.handleChange }
           />
+
           <div style={ signupStyle.containerButtonOptions }>
             <Button color={ 'primary' } variant={ 'outlined' } submit> { 'Cadastrar' } </Button>
           </div>

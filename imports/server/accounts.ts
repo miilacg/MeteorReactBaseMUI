@@ -223,26 +223,25 @@ Meteor.startup(() => {
             return allowed;
         }
 
-
-            // ################################ FACEBOOK ################################################
-            if (user.services.facebook) {
-                user.profile = {
-                    name: user.services.facebook.name,
-                    email: user.services.facebook.email,
-                };
-                return validateLoginFacebook(user);
-            } else if (user.services.google) { // ################################ GOOGLE ################################################
-                user.profile = {
-                    name: user.services.google.name,
-                    email: user.services.google.email,
-                };
-                return validateLoginGoogle(user);
-            }
-        if (!user.emails[0].verified) {
-            throw new Meteor.Error('Email ñao verificado', `Este email ainda não foi verificado!`);
-
+        // ################################ FACEBOOK ################################################
+        if (user.services.facebook) {
+            user.profile = {
+                name: user.services.facebook.name,
+                email: user.services.facebook.email,
+            };
+            return validateLoginFacebook(user);
+        } else if (user.services.google) { // ################################ GOOGLE ################################################
+            user.profile = {
+                name: user.services.google.name,
+                email: user.services.google.email,
+            };
+            return validateLoginGoogle(user);
         }
-        console.log('Acesso autorizado')
+        
+        /*if (!user.emails[0].verified) {
+            throw new Meteor.Error('Email não verificado', `Este email ainda não foi verificado!`);
+        }*/
+        console.log('Acesso autorizado');
         return true;
     });
 });

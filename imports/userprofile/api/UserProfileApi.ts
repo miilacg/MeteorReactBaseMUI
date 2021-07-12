@@ -4,7 +4,7 @@ import { Roles } from 'meteor/alanning:roles';
 import { Accounts } from 'meteor/accounts-base';
 import { OfflineBaseApi } from '../../api/offlinebase';
 import { userProfileSch } from './UserProfileSch';
-import { getUser,userprofileData } from '../../libs/getUser';
+import { getUser, userprofileData } from '../../libs/getUser';
 import settings from '../../../settings.json';
 
 // endregion
@@ -22,7 +22,6 @@ class UserProfileApi extends OfflineBaseApi {
     this.beforeRemove = this.beforeRemove.bind(this);
     this.includeAuditData = this.includeAuditData.bind(this);
     this.insertNewUser = this.insertNewUser.bind(this);
-
     this.afterInsert = this.afterInsert.bind(this);
 
 
@@ -178,10 +177,7 @@ class UserProfileApi extends OfflineBaseApi {
 
 
     try {
-
-        this.collectionInstance.insert(dataObj);
-
-
+      this.collectionInstance.insert(dataObj);
     } catch (mongoError) {
       throw mongoError;
     }
@@ -195,7 +191,7 @@ class UserProfileApi extends OfflineBaseApi {
    * @param  {String} defaultUser - Value of default user
    */
   includeAuditData(doc, action, defaultUser = 'Anonymous') {
-    if (action === 'insert') {
+    if (action === 'insert') {     
       doc.createdby = getUser() ? getUser()._id : defaultUser;
       doc.createdat = new Date();
       doc.lastupdate = new Date();
@@ -281,7 +277,7 @@ class UserProfileApi extends OfflineBaseApi {
   beforeUpdate(docObj, context) {
     const user = getUser();
     if(!docObj._id||(user._id!==docObj._id&&user.roles.indexOf('Administrador')===-1)) {
-      throw new Meteor.Error('Acesso negado', `Vocẽ não tem permissão para alterar esses dados`);
+      throw new Meteor.Error('Acesso negado', `Você não tem permissão para alterar esses dados`);
     }
 
     if(user.roles.indexOf('Administrador')===-1) {  //prevent user change your self roles
@@ -310,10 +306,9 @@ class UserProfileApi extends OfflineBaseApi {
     }
   }
 
-  insertNewUser(userData,callback=(e,r)=>{console.log()}){
+  insertNewUser(userData, callback = (e, r) => { console.log() }) {
     this.callMethod('insert', userData, callback);
   }
-
 }
 
 export const userprofileApi = new UserProfileApi();

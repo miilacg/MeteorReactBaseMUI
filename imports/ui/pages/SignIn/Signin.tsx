@@ -36,12 +36,13 @@ export default class Signin extends React.Component {
 
   handleSubmit(doc) {
     const { email, password } = doc;
+
     Meteor.loginWithPassword(email, password, (err) => {
       if (err) {
         this.props.showSnackBar({
           type:'error',
           title:'Acesso negado!',
-          description: err.reason === 'Incorrect password' ? 'Email ou senha inválidos' : err.reason === 'User not found' ? 'Este email não está cadastrado em nossa base de dados.' : '',
+          description: err.reason === 'Incorrect password' ? 'Email ou senha inválidos' : err.reason === 'User not found' ? 'Este email não está cadastrado em nossa base de dados.' : err.reason,
         });
       } else {
         this.props.showSnackBar({
