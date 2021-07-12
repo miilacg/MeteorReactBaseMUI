@@ -15,11 +15,18 @@
  */
 
 const toggleSwitchStyle = {
-    fieldError: {
-      border:  '1px solid red'
-    },
+  fieldError: {
+    border:  '1px solid red'
+  },
+
+  field: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-end',
+    padding: '.25rem .25rem 0'
+  }
 };
 
 export {
-    toggleSwitchStyle,
+  toggleSwitchStyle,
 };

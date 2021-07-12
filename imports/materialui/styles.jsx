@@ -108,6 +108,13 @@ const form = {
   paddingBottom: 100,
 };
 
+const isParticular = {
+  display: 'flex',
+  flexDirection: 'row-reverse',
+  justifyContent: 'flex-end',
+  padding: '.25rem .25rem 0'
+};
+
 const logo = {
   maxWidth: 100,
 };
@@ -144,6 +151,7 @@ const titleModal = {
   fontWeight: 500,
   lineHeight: '1.2'
 };
+
 
 // Messages
 const warningColor = '#ff9800';
@@ -202,6 +210,7 @@ export {
 
   //form
   form,
+  isParticular,
 
   logo,
 

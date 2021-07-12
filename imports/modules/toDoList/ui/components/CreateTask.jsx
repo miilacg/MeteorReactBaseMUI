@@ -2,16 +2,13 @@ import React from 'react';
 import { withTracker } from "meteor/react-meteor-data";
 
 import { Button } from '@material-ui/core';
-import FormGroup from '@material-ui/core/FormGroup';
 import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
 
 import { toDoListApi } from '../../api/toDoListApi';
 
-import CheckBoxField from '../../../../ui/components/SimpleFormFields/CheckBoxField/CheckBoxField';
 import ChipInput from '../../../../ui/components/SimpleFormFields/ChipInput/ChipInput';
 import TextField from '/imports/ui/components/SimpleFormFields/TextField/TextField';
-import RadioButtonField from '../../../../ui/components/SimpleFormFields/RadioButtonField/RadioButtonField';
 import DatePickerField from '../../../../ui/components/SimpleFormFields/DatePickerField/DatePickerField';
 import SelectField from '../../../../ui/components/SimpleFormFields/SelectField/SelectField';
 import SimpleForm from '/imports/ui/components/SimpleForm/SimpleForm';
@@ -54,9 +51,9 @@ const CreateTask = ({ open, close, toDoListDoc, save }) => {
           <DatePickerField
             placeholder='Data'
             name='date'
-          />  
+          />    
 
-          <CheckBoxField
+          <ToggleSwitchField
             name='isParticular'
           />
 

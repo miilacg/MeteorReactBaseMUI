@@ -67,7 +67,7 @@ export const toDoListSch = {
     type: Boolean,
     label: 'Tarefa particular',
     defaultValue: false,
-    optional: false,
+    optional: true,
   },
 
   statusCheck: {
