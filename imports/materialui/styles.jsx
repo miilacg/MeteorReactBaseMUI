@@ -115,6 +115,22 @@ const isParticular = {
   padding: '.25rem .25rem 0'
 };
 
+const labelIsParticular = {
+  color: 'rgba(0, 0, 0, 0.54)',
+  padding: '0px',
+  whiteSpace: 'break-spaces',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  fontSize: '14px',
+  fontWeight: 'normal',
+  fontStretch: 'normal',
+  fontStyle: 'normal',
+  lineHeight: '1.68',
+  letterSpacing: '0.5px',
+  textAlign: 'left',
+  textTransform: 'none'
+}
+
 const logo = {
   maxWidth: 100,
 };
@@ -211,6 +227,7 @@ export {
   //form
   form,
   isParticular,
+  labelIsParticular,
 
   logo,
 

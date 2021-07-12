@@ -1,26 +1,17 @@
 import React from 'react';
 import { withTracker } from "meteor/react-meteor-data";
+
 import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import FormGroup from '@material-ui/core/FormGroup';
+import Typography from '@material-ui/core/Typography';
 
-import ChipInput from '../../../../ui/components/SimpleFormFields/ChipInput/ChipInput';
-import SimpleForm from "../../../../ui/components/SimpleForm/SimpleForm";
-import SimpleImageUploadBase64 from "../../../../ui/components/SimpleFormFields/ImageUpload/SimpleImageUploadBase64";
-import TextMaskField from '../../../../ui/components/SimpleFormFields/TextMaskField/TextMaskField';
-import ToggleSwitchField from '../../../../ui/components/SimpleFormFields/ToggleField/ToggleField';
-import RadioButtonField from '../../../../ui/components/SimpleFormFields/RadioButtonField/RadioButtonField';
 import DatePickerField from '../../../../ui/components/SimpleFormFields/DatePickerField/DatePickerField';
-import SelectField from '../../../../ui/components/SimpleFormFields/SelectField/SelectField';
-import UploadFilesCollection from '../../../../ui/components/SimpleFormFields/UploadFiles/uploadFilesCollection';
-
-import AudioRecorder from "/imports/ui/components/SimpleFormFields/AudioRecorderField/AudioRecorder";
+import SimpleForm from "../../../../ui/components/SimpleForm/SimpleForm";
 import TextField from '/imports/ui/components/SimpleFormFields/TextField/TextField';
-import GoogleApiWrapper from '/imports/ui/components/SimpleFormFields/MapsField/MapsField'
+import ToggleSwitchField from '../../../../ui/components/SimpleFormFields/ToggleField/ToggleField';
 
 import { toDoListApi } from '../../api/toDoListApi';
 
-import Typography from '@material-ui/core/Typography';
 import * as appStyle from "/imports/materialui/styles";
 
 
@@ -77,6 +68,13 @@ const ToDoListDetail = ({ screenState, loading, toDoListDoc, save, history }: IT
           placeholder='Data'
           name='date'
         />
+
+        { screenState === 'view' ? (
+          toDoListDoc.isParticular && <label style={ appStyle.labelIsParticular}> Tarefa particular </label> 
+        ) : (
+          <ToggleSwitchField name='isParticular' />
+        )}
+      
 
         <div key={ 'Buttons' } style={{ display: 'flex', flexDirection: 'row', justifyContent: 'left', paddingTop: 20, paddingBottom: 20 }}>
           <Button
