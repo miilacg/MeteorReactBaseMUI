@@ -6,12 +6,13 @@ import { Button } from '@material-ui/core';
 import { IconButton } from '@material-ui/core';
 import { Menu } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
-import Tabs from '@material-ui/core/Tabs';
 import Toolbar from "@material-ui/core/Toolbar";
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import Modules from '../../modules';
+
+import { userprofileApi } from '/imports/userprofile/api/UserProfileApi';
 
 import { isMobile } from "/imports/libs/deviceVerify";
 
@@ -46,9 +47,13 @@ const AppNavBar = ({ user, history, showDrawer, showWindow, theme, location }) =
     setAnchorEl(null);
   };
 
-  const openPage = url=> () => {
+  const openPage = url => () => {
     handleClose();
     history.push(url);
+  }
+
+  const removeProfile = url => () => {
+    userprofileApi.removeUser(user);
   }
 
   const viewProfile = () => {
@@ -119,6 +124,7 @@ const AppNavBar = ({ user, history, showDrawer, showWindow, theme, location }) =
             ) : (
               [
                 <MenuItem key={ 'userprofile' } as={ NavLink } onClick={ viewProfile }>Meus dados</MenuItem>,
+                <MenuItem key={ 'removeprofle' } as={ NavLink } onClick={ removeProfile("/signout") }>Excluir Usuário</MenuItem>,
                 <MenuItem key={ 'signout' } as={ NavLink } onClick={ openPage("/signout") }>Sair</MenuItem>
               ]
             )}
