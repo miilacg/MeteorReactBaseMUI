@@ -23,6 +23,7 @@ class UserProfileApi extends OfflineBaseApi {
     this.includeAuditData = this.includeAuditData.bind(this);
     this.insertNewUser = this.insertNewUser.bind(this);
     this.afterInsert = this.afterInsert.bind(this);
+    this.removeUser =  this.removeUser.bind(this);
 
 
     if (Meteor.isServer) {
@@ -308,6 +309,10 @@ class UserProfileApi extends OfflineBaseApi {
 
   insertNewUser(userData, callback = (e, r) => { console.log() }) {
     this.callMethod('insert', userData, callback);
+  }
+
+  removeUser(userData, callback = (e, r) => { }) {
+    this.callMethod('remove', userData, callback);
   }
 }
 
