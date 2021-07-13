@@ -121,7 +121,7 @@ const labelIsParticular = {
   whiteSpace: 'break-spaces',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  fontSize: '14px',
+  fontSize: '1.4rem',
   fontWeight: 'normal',
   fontStretch: 'normal',
   fontStyle: 'normal',

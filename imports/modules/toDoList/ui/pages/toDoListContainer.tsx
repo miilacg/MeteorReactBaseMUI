@@ -79,7 +79,7 @@ const ToDoList = ({ toDoLists, history, remove, showDialog, total, loading, setP
       <Typography style={ appStyle.title }> { 'lista de tarefas' } </Typography>
 
       <SimpleTable
-        schema={ _.pick(toDoListApi.schema,['title', 'description', 'date', 'chip', 'type']) }
+        schema={ _.pick(toDoListApi.schema,['title', 'date']) }
         data={ toDoLists }
         onClick={ onClick }
         actions={[{ icon:<Delete color={'primary'} />, onClick:callRemove }]}
